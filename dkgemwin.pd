@@ -1,16 +1,16 @@
-#N canvas 735 451 1177 788 12;
-#X obj 246 745 gemwin;
-#X obj 109 145 tgl 15 0 empty empty win 17 7 0 12 -262144 -1 -1 0 1
+#N canvas 764 366 1481 937 12;
+#X obj 245 845 gemwin;
+#X obj 108 245 tgl 15 0 empty empty win 17 7 0 12 -262144 -1 -1 0 1
 ;
-#X obj 21 252 sel 1 0;
-#X msg 333 700 0 \, destroy;
-#X floatatom 119 191 5 0 1e+20 0 w - -, f 5;
-#X floatatom 173 189 5 0 1e+20 0 h - -, f 5;
-#X msg 274 536 create \, 1;
-#X msg 616 686 reset;
-#X obj 112 170 tgl 15 0 empty empty fullscreen 17 7 0 12 -262144 -1
+#X obj 20 374 sel 1 0;
+#X msg 332 800 0 \, destroy;
+#X floatatom 118 291 5 0 1e+20 0 w - -, f 5;
+#X floatatom 172 289 5 0 1e+20 0 h - -, f 5;
+#X msg 273 636 create \, 1;
+#X msg 615 786 reset;
+#X obj 111 270 tgl 15 0 empty empty fullscreen 17 7 0 12 -262144 -1
 -1 0 1;
-#X msg 135 74 0;
+#X msg 16 189 0;
 #N canvas 107 103 450 300 dkgemwin_esc 0;
 #X obj 65 20 gemkeyboard;
 #X obj 65 167 outlet;
@@ -25,11 +25,11 @@
 #X connect 4 0 1 0;
 #X connect 5 0 1 0;
 #X connect 6 1 5 0;
-#X restore 135 50 pd dkgemwin_esc;
-#X obj 105 227 hradio 15 1 0 5 empty empty fsaa 0 -8 0 12 -262144 -1
+#X restore 16 165 pd dkgemwin_esc;
+#X obj 104 327 hradio 15 1 0 5 empty empty fsaa 0 -8 0 12 -262144 -1
 -1 0;
-#X obj 21 305 t b b b b, f 83;
-#X floatatom 243 187 5 0 1e+20 0 fps - -, f 5;
+#X obj 20 405 t b b b b, f 83;
+#X floatatom 242 287 5 0 1e+20 0 fps - -, f 5;
 #N canvas 76 538 1892 732 dkgemwin_precreate 0;
 #X obj 578 411 pack f f;
 #X obj 580 381 t b f;
@@ -118,7 +118,7 @@
 #X connect 41 4 31 0;
 #X connect 41 5 40 0;
 #X connect 42 0 24 0;
-#X restore 403 356 pd dkgemwin_precreate;
+#X restore 402 456 pd dkgemwin_precreate;
 #N canvas 892 351 1138 756 dkgemwin_postcreate 0;
 #X obj 373 417 f 20;
 #X msg 373 441 frame \$1;
@@ -141,19 +141,46 @@
 #X connect 9 0 8 1;
 #X connect 11 0 8 0;
 #X connect 11 1 0 0;
-#X restore 27 446 pd dkgemwin_postcreate;
-#X obj 204 165 tgl 15 0 empty empty light 17 7 0 12 -262144 -1 -1 1
+#X restore 26 546 pd dkgemwin_postcreate;
+#X obj 203 265 tgl 15 0 empty empty light 17 7 0 12 -262144 -1 -1 1
 1;
-#X obj 154 143 tgl 15 0 empty empty border 17 7 0 12 -262144 -1 -1
+#X obj 153 243 tgl 15 0 empty empty border 17 7 0 12 -262144 -1 -1
 1 1;
-#X obj 224 140 tgl 15 0 empty empty dblbuf 17 7 0 12 -262144 -1 -1
+#X obj 223 240 tgl 15 0 empty empty dblbuf 17 7 0 12 -262144 -1 -1
 1 1;
-#X floatatom 200 222 5 0 1e+20 0 ox - -, f 5;
-#X floatatom 258 222 5 0 1e+20 0 oy - -, f 5;
-#X obj 330 26 loadbang;
-#X msg 330 50 1 1 0 1 640 480 20 0 0 0;
-#X obj 330 74 unpack f f f f f f f f f f;
-#X connect 1 0 2 0;
+#X floatatom 199 322 5 0 1e+20 0 ox - -, f 5;
+#X floatatom 257 322 5 0 1e+20 0 oy - -, f 5;
+#X obj 646 116 loadbang;
+#X obj 152 131 inlet;
+#X obj 164 171 route win border dblbuf fullscreen light w h fps fsaa
+ox oy;
+#X msg 199 141 border 1 \, dblbuf 1 \, fullscreen 0 \, light 1 \, fsaa
+0;
+#X obj 646 164 f \$1;
+#X obj 646 188 sel 0;
+#X msg 646 212 640;
+#X msg 646 236 w \$1;
+#X obj 727 170 f \$2;
+#X obj 727 194 sel 0;
+#X msg 727 218 480;
+#X msg 727 242 h \$1;
+#X obj 646 140 t b b b b, f 36;
+#X obj 802 175 f \$3;
+#X obj 802 199 sel 0;
+#X msg 802 223 20;
+#X msg 802 247 fps \$1;
+#X text 26 19 pdkgemwin - gemwin abstraction gui;
+#X text 1137 88 derek kwan;
+#X text 1138 109 pdkgem 2018;
+#X text 1145 132 gpl v 3;
+#X text 25 41 args: w h fps;
+#X obj 245 869 outlet;
+#X obj 359 869 outlet;
+#X obj 40 334 t f f;
+#X text 37 69 inlet: gui elements/gemwin messages;
+#X text 39 97 outlets: gemwin output \, on/off;
+#X connect 0 0 43 0;
+#X connect 1 0 45 0;
 #X connect 2 0 12 0;
 #X connect 2 1 3 0;
 #X connect 3 0 0 0;
@@ -177,16 +204,40 @@
 #X connect 18 0 14 6;
 #X connect 19 0 14 7;
 #X connect 20 0 14 8;
-#X connect 21 0 22 0;
+#X connect 21 0 33 0;
 #X connect 22 0 23 0;
-#X connect 23 0 17 0;
-#X connect 23 1 18 0;
-#X connect 23 2 8 0;
-#X connect 23 3 16 0;
-#X connect 23 4 4 0;
-#X connect 23 5 5 0;
-#X connect 23 6 13 0;
-#X connect 23 7 11 0;
-#X connect 23 8 19 0;
-#X connect 23 9 20 0;
-#X coords 0 -1 1 1 200 150 1 100 100;
+#X connect 23 0 1 0;
+#X connect 23 1 17 0;
+#X connect 23 2 18 0;
+#X connect 23 3 8 0;
+#X connect 23 4 16 0;
+#X connect 23 5 4 0;
+#X connect 23 6 5 0;
+#X connect 23 7 13 0;
+#X connect 23 8 11 0;
+#X connect 23 9 19 0;
+#X connect 23 10 20 0;
+#X connect 23 11 0 0;
+#X connect 24 0 23 0;
+#X connect 25 0 26 0;
+#X connect 26 0 27 0;
+#X connect 26 1 28 0;
+#X connect 27 0 28 0;
+#X connect 28 0 23 0;
+#X connect 29 0 30 0;
+#X connect 30 0 31 0;
+#X connect 30 1 32 0;
+#X connect 31 0 32 0;
+#X connect 32 0 23 0;
+#X connect 33 0 25 0;
+#X connect 33 1 29 0;
+#X connect 33 2 34 0;
+#X connect 33 3 24 0;
+#X connect 34 0 35 0;
+#X connect 35 0 36 0;
+#X connect 35 1 37 0;
+#X connect 36 0 37 0;
+#X connect 37 0 23 0;
+#X connect 45 0 44 0;
+#X connect 45 1 2 0;
+#X coords 0 -1 1 1 200 150 1 100 200;
