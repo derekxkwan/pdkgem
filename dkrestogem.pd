@@ -39,12 +39,12 @@
 #X msg 392 176 640;
 #X obj 544 145 moses 1;
 #X msg 544 169 480;
-#X text 27 44 dkgemcoords: resolution to gem coords converter;
 #X text 59 504 x;
 #X text 188 508 y;
 #X text 795 68 derek kwan;
 #X text 800 96 pdkgem 2018;
 #X text 802 120 gpl v 3 2018;
+#X text 27 44 dkrestogem: resolution to gem coords converter;
 #X connect 0 0 36 0;
 #X connect 2 0 38 0;
 #X connect 4 0 29 0;
